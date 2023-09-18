@@ -34,3 +34,5 @@
 
 - ### This bash script is located in: 
     [ ./bin/install_terraform_cli.sh ](./bin/install_terraform_cli.sh)
+
+- ### Work with ENV var
