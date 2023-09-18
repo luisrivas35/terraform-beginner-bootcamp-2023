@@ -36,3 +36,29 @@
     [ ./bin/install_terraform_cli.sh ](./bin/install_terraform_cli.sh)
 
 - ### Work with ENV var
+    Create a .env.xxxx 
+
+- ### AWS CLI Installation
+    AWS CLI is installed for this project via the bash script `./bin/install_aws_cli`
+
+- ### Install or update the latest version of the AWS CLI
+    [Getting Started AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
+- ### Check if our credentials are configured
+    ```
+    aws sts get-caller-identity
+    ```
+
+    [AWS CLI env vars](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+
+- ### Generate AWS credential for terraform user
+    If successful you see something like this:
+    ```
+    {
+        "UserId": "AKIAIOSFODNN7EXAMPLE",
+        "Account": "123456789012",
+        "Arn": "arn:aws:iam::123456789012:user/terraform_user"
+    }
+
+
+    ```
