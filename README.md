@@ -45,20 +45,19 @@
     [Getting Started AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
 - ### Check if our credentials are configured
-    ```
+    ```sh
     aws sts get-caller-identity
     ```
 
-    [AWS CLI env vars](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+   * [AWS CLI env vars](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
 
 - ### Generate AWS credential for terraform user
-    If successful you see something like this:
-    ```
+    If it is successful you see something like this:
+    ```json
     {
         "UserId": "AKIAIOSFODNN7EXAMPLE",
         "Account": "123456789012",
         "Arn": "arn:aws:iam::123456789012:user/terraform_user"
     }
-
-
     ```
+    we'll need to generate AWS CLI credits from AIM user in order to the user AWS CLI 
