@@ -61,3 +61,52 @@
     }
     ```
     we'll need to generate AWS CLI credits from AIM user in order to the user AWS CLI 
+
+## Terraform Basics
+
+### Terraform Registry
+
+Terraform registry located at: [registry.terraform.io](https://registry.terraform.io/)
+
+- **Providers** are interfaces to API that will allow to create resources.
+- **Modules** are a way to refactor to make a large amount of code modular, portable and sharable.
+
+### Terraform Console
+
+list terraform commands:
+```
+terraform
+```
+[Random Terraform Provider](https://registry.terraform.io/providers/hashicorp/random)
+
+#### Terraform init
+At the start of a new project:
+```
+terraform init
+```
+
+#### Terraform plan
+Generate a changeset about the state of the infra and changes. 
+```
+terraform plan
+```
+
+#### Terraform apply
+Execute a changeset.
+```
+terraform apply
+```
+To make it automatically:
+```
+terraform apply --auto-approve
+```
+
+### Terraform Lock File
+`.terraform.lock.hcl` contains the locked versioning for providers or modules used. It should be committed to your git repo.
+
+### Terraform State File
+`.terraform.tfstate` contains info about the current state of youur infra. It should not be committed. It is sensitive data.
+
+`.terraform.lock.backup` contains the previous file state
+
+
