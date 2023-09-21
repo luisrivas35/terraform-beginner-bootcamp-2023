@@ -101,6 +101,12 @@ To make it automatically:
 terraform apply --auto-approve
 ```
 
+### Terraform destroy:
+Destroy 
+```
+terraform destroy
+```
+
 ### Terraform Lock File
 `.terraform.lock.hcl` contains the locked versioning for providers or modules used. It should be committed to your git repo.
 
