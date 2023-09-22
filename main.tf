@@ -1,4 +1,13 @@
 terraform {
+
+  cloud {
+    organization = "terraform_user"
+
+    workspaces {
+      name = "terra-house-1"
+    }
+  }
+  
   required_providers {
     random = {
       source = "hashicorp/random"
@@ -24,7 +33,7 @@ resource "random_string" "bucket_name" {
   lower            = true
   upper            = false  
   length           = 16
-  special          = true
+  special          = false
   
 }
 

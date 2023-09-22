@@ -115,4 +115,26 @@ terraform destroy
 
 `.terraform.lock.backup` contains the previous file state
 
+### Terraform issues with login and gitpod
+when attempted to login, a windows appears to aks for a token credentials to tf cloud and need to do manually
+```
+https://app.terraform.io/app/settings/tokens?source=terraform-login
+```
+The file lives in here:
+````
+/home/gitpod/.terraform.d/credentials.tfrc.json
+````
+Write this info:
+````json
+{
+  "credentials": {
+    "app.terraform.io": {
+      "token": "your-token-here"
+    }
+  }
+}
+````
+
+
+
 
