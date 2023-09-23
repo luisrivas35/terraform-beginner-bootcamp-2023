@@ -1,7 +1,7 @@
 terraform {
 
   cloud {
-    organization = "terraform_user"
+    organization = "xluisrivas"
 
     workspaces {
       name = "terra-house-1"
