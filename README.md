@@ -134,6 +134,15 @@ Write this info:
   }
 }
 ````
+### Add alias to ~/.bash_profile
+Add an alias to bash profile and automate it with a bash script
+````
+alias tf="terraform"
+````
+if it not work, add this to the gitpod yml to assure it is executed properly:
+````
+source ~/.bash_profile  
+````
 
 
 
