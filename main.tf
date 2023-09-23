@@ -1,13 +1,4 @@
 terraform {
-
-  cloud {
-    organization = "terraform_user"
-
-    workspaces {
-      name = "terra-house-1"
-    }
-  }
-  
   required_providers {
     random = {
       source = "hashicorp/random"
@@ -45,4 +36,5 @@ resource "aws_s3_bucket" "example" {
 output "random_bucket_name" {
   value = random_string.bucket_name.result
 }
+
 
