@@ -36,7 +36,10 @@ This is the default file to load variables in Terraform
 #### order of terraform variables
 - to do: research and document
 ## Dealing with config drift
-
+### Fix using terraform refresh
+````sh
+terraform apply -refresh-only -auto-approve
+````
 ### Fix missing resources with Terraform import
 ```
 terraform import aws_s3_bucket.bucket bucket-name
@@ -44,5 +47,27 @@ terraform import aws_s3_bucket.bucket bucket-name
 [Terraform Import](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import)
 ### Fix manual config
 If someone goes and delete or modifies cloud resources
+
+## Terraform Modules
+https://developer.hashicorp.com/terraform/language/modules/sources
+### Modules structure
+It is recommended to place modules in a `modules` directory when working locally  
+### Passing variables
+The module has to declare its variables in its own file variables.tf
+````tf
+module "terrahouse_aws" {
+    source ="./modules/terrahouse_aws"
+    user_uuid ="var.user_uuid"
+    bucket_name = "var.bucket_name"
+}
+````
+### Modules Sources
+We can use differents sources eg. terraform registry, local, github 
+````tf
+module "terrahouse_aws" {
+    source ="./modules/terrahouse_aws"
+} 
+````
+
 
 
