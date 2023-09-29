@@ -35,4 +35,14 @@ This is the default file to load variables in Terraform
 - to do: research and document this flag
 #### order of terraform variables
 - to do: research and document
+## Dealing with config drift
+
+### Fix missing resources with Terraform import
+```
+terraform import aws_s3_bucket.bucket bucket-name
+```
+[Terraform Import](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import)
+### Fix manual config
+If someone goes and delete or modifies cloud resources
+
 
