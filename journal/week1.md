@@ -86,7 +86,7 @@ There is a special variable called `path` to reference a local path:
 - path.module = get the path 
 [Special path variable](https://developer.hashicorp.com/terraform/language/expressions/references#filesystem-and-workspace-info)
 
-```
+```tf
 resource "aws_s3_object" "index_html" {
   bucket = aws_s3_bucket.website_bucket.bucket
   key    = "index.html"
@@ -96,4 +96,31 @@ resource "aws_s3_object" "index_html" {
 }
 ```
 we also created the variable path as a env variable in tfvars
+
+### Terraform locals
+Allows to define local variables(could be useful to transform data into another format)
+[locals values](https://developer.hashicorp.com/terraform/language/values/locals)
+```tf
+locals {
+  s3_origin_id = "MyS3Origin"
+}
+````
+
+### Terraform Datasources
+Allows use data from cloud
+[datasources](https://developer.hashicorp.com/terraform/language/data-sources)
+```tf
+data "aws_caller_identity" "current" {}
+
+output "account_id" {
+  value = data.aws_caller_identity.current.account_id
+}
+```
+### Working with JSON
+Used to create an inline policy in HCL code
+[Jsonencode](https://developer.hashicorp.com/terraform/language/functions/jsonencode)
+```tf
+jsonencode({"hello"="world"})
+{"hello":"world"}
+```
 
