@@ -68,6 +68,32 @@ module "terrahouse_aws" {
     source ="./modules/terrahouse_aws"
 } 
 ````
+### Condiderations using ChatGPT
+It would be not trained with the latest versions of code and sometimes we get deprecated instructions 
 
+## Working with files in terraform
 
+### Fleexist function
+Check if a file exist
+```
+condition = fileexists(var.index_html_filepath)
+```
+### Filemd5
+https://developer.hashicorp.com/terraform/language/functions/filemd5
+
+### Path variables
+There is a special variable called `path` to reference a local path:
+- path.module = get the path 
+[Special path variable](https://developer.hashicorp.com/terraform/language/expressions/references#filesystem-and-workspace-info)
+
+```
+resource "aws_s3_object" "index_html" {
+  bucket = aws_s3_bucket.website_bucket.bucket
+  key    = "index.html"
+  source = var.index_html_filepath  # Replace with the path to your index.html file
+ 
+  etag = filemd5(var.index_html_filepath)
+}
+```
+we also created the variable path as a env variable in tfvars
 
