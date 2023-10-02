@@ -61,6 +61,25 @@ module "terrahouse_aws" {
     bucket_name = "var.bucket_name"
 }
 ````
+It is important to take into account that variables and outputs should be declare inside the modules like:
+
+```tf
+variable "content_version" {
+  description = "The content version (positive integer starting at 1)"
+  type        = number
+  validation {
+    condition     = var.content_version > 0 && can(var.content_version, "int")
+    error_message = "Content version must be a positive integer starting at 1"
+  }
+}
+
+```
+And it also be declare in the root level like:
+```tf
+variable "content_version" {
+  description = "The content version (positive integer starting at 1)"
+  type        = number
+```
 ### Modules Sources
 We can use differents sources eg. terraform registry, local, github 
 ````tf
@@ -123,4 +142,12 @@ Used to create an inline policy in HCL code
 jsonencode({"hello"="world"})
 {"hello":"world"}
 ```
+### Changing the resouces lifecycle
+[Meta Arguments LifeCycle](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle)
 
+### Terraform data
+The replace_triggered_by lifecycle argument requires all of the given addresses to be for resources, because the decision to force replacement is based on the planned actions for all of the mentioned resources.
+
+Plain data values such as Local Values and Input Variables don't have any side-effects to plan against and so they aren't valid in replace_triggered_by. You can use terraform_data's behavior of planning an action each time input changes to indirectly use a plain value to trigger replacement.
+
+[](https://developer.hashicorp.com/terraform/language/resources/terraform-data)
