@@ -150,4 +150,43 @@ The replace_triggered_by lifecycle argument requires all of the given addresses 
 
 Plain data values such as Local Values and Input Variables don't have any side-effects to plan against and so they aren't valid in replace_triggered_by. You can use terraform_data's behavior of planning an action each time input changes to indirectly use a plain value to trigger replacement.
 
-[](https://developer.hashicorp.com/terraform/language/resources/terraform-data)
+[terraform data](https://developer.hashicorp.com/terraform/language/resources/terraform-data)
+
+## Provisioners
+Provisioners allows you to execute commands on compute instances eg. aws CLI command. They are not recommended by hashicorp because there is other app for that lile ansible but the functionality exist
+
+### local-exec
+this will execute commands where terraform resides
+[local-exec](https://developer.hashicorp.com/terraform/language/resources/provisioners/local-exec)
+```
+resource "aws_instance" "web" {
+  # ...
+  provisioner "local-exec" {
+    command = "echo ${self.private_ip} >> private_ips.txt"
+  }
+}
+```
+### remote-exec
+this will execute commands where you target eg. You need to provide credentials such as SSH to get into the machine.
+[remore-exec](https://developer.hashicorp.com/terraform/language/resources/provisioners/remote-exec)
+```
+resource "aws_instance" "web" {
+  # ...
+
+  # Establishes connection to be used by all
+  # generic remote provisioners (i.e. file/remote-exec)
+  connection {
+    type     = "ssh"
+    user     = "root"
+    password = var.root_password
+    host     = self.public_ip
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "puppet apply",
+      "consul join ${aws_instance.web.private_ip}",
+    ]
+  }
+}
+```
