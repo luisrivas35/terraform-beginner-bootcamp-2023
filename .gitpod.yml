@@ -13,6 +13,9 @@ tasks:
       source ./bin/install_aws_cli.sh
       source ./bin/add_tf_alias.sh
       source ~/.bash_profile
+  - name: http-server
+    before: |
+      npm install --global http-server
 
 vscode:
   extensions:

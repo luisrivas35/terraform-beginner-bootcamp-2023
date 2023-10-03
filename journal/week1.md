@@ -123,7 +123,7 @@ Allows to define local variables(could be useful to transform data into another 
 locals {
   s3_origin_id = "MyS3Origin"
 }
-````
+```
 
 ### Terraform Datasources
 Allows use data from cloud
@@ -190,3 +190,10 @@ resource "aws_instance" "web" {
   }
 }
 ```
+### For each Expresions
+For each allows us to enumerate over complex data types
+```sh
+[for s in var.list : upper(s)]
+```
+This is mostly useful when creating multiple cloud resources
+[For Each Expresions](https://developer.hashicorp.com/terraform/language/expressions/for)
