@@ -3,22 +3,39 @@ require 'json'
 require 'pry'
 require 'active_model'
 
+# We mock having a state or database using a global variable. Never use in production
 $home = {}
 
+# This is a ruby that includes validations from ActiveRecord. Represent our home resources as a ruby object
 class Home
+  # ActiveModel is part of Ruby on Rails. Used as an ORM. Provides validations. Terratowns server is rails
+  # https://guides.rubyonrails.org/active_model_basics.html
   include ActiveModel::Validations
+  
+  #create some virtuasl attrib. This will set a getter and setter
   attr_accessor :town, :name, :description, :domain_name, :content_version
 
-  validates :town, presence: true
+  validates :town, presence: true, inclusion: { in: [
+  'melomaniac-mansion',  
+  'cooker-cove',
+  'video-valley',
+  'the-nomad-pad',
+  'gamers-grotto'
+  ]}
+  # visible to all users
   validates :name, presence: true
+  # visible to all users
   validates :description, presence: true
+  # lock down only from cloudfront
   validates :domain_name, 
     format: { with: /\.cloudfront\.net\z/, message: "domain must be from .cloudfront.net" }
     # uniqueness: true, 
 
+  # integer
   validates :content_version, numericality: { only_integer: true }
 end
 
+# extending a class from sinatra::base
 class TerraTownsMockServer < Sinatra::Base
 
   def error code, message
@@ -46,7 +63,7 @@ class TerraTownsMockServer < Sinatra::Base
   def x_user_uuid
     'e328f4ab-b99f-421c-84c9-4ccea042c7d1'
   end
-
+  # https://swagger.io/docs/specification/authentication/bearer-authentication/
   def find_user_by_bearer_token
     auth_header = request.env["HTTP_AUTHORIZATION"]
     if auth_header.nil? || !auth_header.start_with?("Bearer ")
@@ -184,5 +201,5 @@ class TerraTownsMockServer < Sinatra::Base
     { message: "House deleted successfully" }.to_json
   end
 end
-
+# running the server
 TerraTownsMockServer.run!
