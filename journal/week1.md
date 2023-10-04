@@ -197,3 +197,13 @@ For each allows us to enumerate over complex data types
 ```
 This is mostly useful when creating multiple cloud resources
 [For Each Expresions](https://developer.hashicorp.com/terraform/language/expressions/for)
+
+### Working in local windows env 
+When working in a local windows env, you need to adjust the env path for variables in your tfvars file
+```
+"/workspace/terraform-beginner-bootcamp-2023/public/index.html"
+```
+to this way:
+```
+"C:\\myrepo\\terraform-beginner-bootcamp-2023\\public\\error.html"
+```
