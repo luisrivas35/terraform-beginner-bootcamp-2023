@@ -32,5 +32,5 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
-
+terraform-provider-terratowns/terratowns-provider-terratowns
 terraform-provider-terratowns/terratowns-provider-terratowns_v*

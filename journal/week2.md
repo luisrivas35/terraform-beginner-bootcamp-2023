@@ -29,3 +29,7 @@ bundle install
 bundle exec ruby server.rb
 ```
 All the code for the server is in `server.rb` file
+
+## CRUD
+Terraform provider resources
+https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
