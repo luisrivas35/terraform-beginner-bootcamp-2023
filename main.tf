@@ -5,14 +5,7 @@ terraform {
       version = "1.0.0"
     }
   }
-  #backend "remote" {
-  #  hostname = "app.terraform.io"
-  #  organization = "ExamPro"
-
-  #  workspaces {
-  #    name = "terra-house-1"
-  #  }
-  #}
+  
   cloud {
     organization = "terraform_user"
     workspaces {
@@ -47,7 +40,7 @@ When the woman took their washing to the river, they found clumps of a pale, wax
 The woman washed their clothes by pounding them on the rocks. When the waxy substance was beaten with the clothes, it made a lather, and the clothes got cleaner.
 DESCRIPTION
   domain_name = module.home_arcanum_hosting.cloudfront_url
-  town = "missingo"
+  town = "cooker-cove"
   content_version = var.arcanum.content_version
 }
 
@@ -67,6 +60,6 @@ Fresh pasta is traditionally produced by hand, sometimes with the aid of simple 
 Fresh pastas available in grocery stores are produced commercially by large-scale machines.
 DESCRIPTION
   domain_name = module.home_payday_hosting.cloudfront_url
-  town = "missingo"
+  town = "cooker-cove"
   content_version = var.payday.content_version
 }
