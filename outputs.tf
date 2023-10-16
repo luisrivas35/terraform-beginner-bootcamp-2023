@@ -1,13 +1,20 @@
 output "bucket_name" {
-  description = "bucket for static web site"
-  value = module.terrahouse_aws.bucket_name
+  description = "Bucket name for our static website hosting"
+  value = module.home_arcanum_hosting.bucket_name
 }
 
 output "s3_website_endpoint" {
-  value = module.terrahouse_aws.website_endpoint
+  description = "S3 Static Website hosting endpoint"
+  value = module.home_arcanum_hosting.website_endpoint
 }
 
 output "cloudfront_url" {
-  description = "the cloudfront distribution domain name"
-  value = module.terrahouse_aws.cloudfront_url
+  description = "The CloudFront Distribution Domain Name"
+  # value = module.home_arcanum_hosting.domain_name
+  value = "3xf332sdfs.cloudfront.net"
 }
+
+# output "domain_name" {
+#   description = "The domain name of the hosted content"
+#   value       = "3xf332sdfs.cloudfront.net" # Replace with the appropriate value or variable from your module
+# }
